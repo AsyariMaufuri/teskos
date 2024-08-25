@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="EmailService" />
+        <module name="PurchaseService" />
+        <module name="BalanceService" />
+        <module name="Base" />
+        <module name="ApiGateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ApiGateway" target="17" />
+      <module name="BalanceService" target="17" />
+      <module name="Base" target="17" />
+      <module name="EmailService" target="17" />
+      <module name="PurchaseService" target="17" />
+      <module name="StockService" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGateway" options="-parameters" />
+      <module name="BalanceService" options="-parameters" />
+      <module name="Base" options="-parameters" />
+      <module name="EmailService" options="-parameters" />
+      <module name="PurchaseService" options="-parameters" />
+      <module name="StockService" options="-parameters" />
+    </option>
+  </component>
+</project>
