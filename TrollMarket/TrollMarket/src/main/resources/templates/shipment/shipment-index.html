@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/shipment-index.css" />
+    <script src="../../js/shipper.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <main>
+        <div class="shipment">
+            <a class="add-button">Add New Shipment</a>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Service</th>
+                </tr>
+                <tr th:each="shipper : ${shippers}">
+                    <td>
+                        <a class="editShipper" th:attr="shipper-name=${shipper.shipperName}">Edit</a>
+                        <a th:href="@{/shipment/delete(shipperName=${shipper.shipperName})}">Delete</a>
+                        <a th:if="${shipper.service}" th:href="@{/shipment/service(shipperName=${shipper.shipperName})}">Stop service</a>
+                    </td>
+                    <td th:text="${shipper.shipperName}"></td>
+                    <td th:text="${shipper.priceIDR}"></td>
+                    <td th:text="${shipper.service ? 'yes' : 'no'}"></td>
+                </tr>
+            </table>
+            <div th:text="|page ${currentPage} of ${totalPages}|" class="totalPage"></div>
+            <div class="pageNow">
+                <a href="javascript:;" class="number"
+                   th:each="page : ${#numbers.sequence(1, totalPages)}"
+                   th:href="@{/shipment/index(page=${page})}"
+                   th:text="${page}"></a>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="popup-shipper">
+    <form  class="form-insert">
+        <table>
+            <tbody>
+            <tr>
+                <td>Shipper Name</td>
+                <td>
+                    <input type="text" name="shipperName" class="inputShipperName">
+                    <div errors="shipperName"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>
+                    <input type="text" name="price" class="inputPrice">
+                    <div class="field-validation-error"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Service</td>
+                <td>
+                    <input type="checkbox" name="service" class="inputService">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="submitPopup">Tambah</button>
+        <button type="button" class="closePopup">Batal</button>
+    </form>
+</div>
+</body>
+</html>

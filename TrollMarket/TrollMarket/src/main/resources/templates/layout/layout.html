@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>A Web Page</title>
+	<script src="../../js/layout.js" defer></script>
+</head>
+<body>
+<div class="container">
+	<header th:fragment="header">
+		<div class="headerTop">
+			<div class="header-left">TROLL MARKET</div>
+			<div class="header-right">
+				<span>Welcome, <span class="username" th:text="${#authentication.getPrincipal().getUsername()}"></span> </span>
+				<form method="post" th:action="@{/logout}">
+					<input type="hidden" th:name="${_csrf.parameterName}"
+						   th:value="${_csrf.token}">
+					<button type="submit">Sign Out</button>
+				</form>
+
+			</div>
+		</div>
+		<nav>
+			<a th:href="@{/home}">Home</a>
+			<a th:unless="${#authentication.getAuthorities().toArray()[0].authority} == 'admin'" th:href="@{/profile/index(username=${#authentication.getPrincipal().getUsername()})}">Profile</a>
+			<a th:if="${#authentication.getAuthorities().toArray()[0].authority} == 'buyer'" th:href="@{/shop/index(username=${#authentication.getPrincipal().getUsername()})}">Shop</a>
+			<a th:if="${#authentication.getAuthorities().toArray()[0].authority} == 'seller'" th:href="@{/merchandise/index(username=${#authentication.getPrincipal().getUsername()})}">Merchandise</a>
+			<a th:if="${#authentication.getAuthorities().toArray()[0].authority} == 'admin'" th:href="@{/shipment/index}">Shipment</a>
+			<a th:if="${#authentication.getAuthorities().toArray()[0].authority} == 'buyer'" th:href="@{/cart/index(username=${#authentication.getPrincipal().getUsername()})}">My Cart</a>
+			<a th:if="${#authentication.getAuthorities().toArray()[0].authority} == 'admin'" th:href="@{/admin/index}">Admin</a>
+			<a th:if="${#authentication.getAuthorities().toArray()[0].authority} == 'admin'" th:href="@{/history/index}">History</a>
+		</nav>
+		<div class="Menu">
+			<span th:text="|${menu}|"></span>
+		</div>
+	</header>
+	<main>
+
+	</main>
+</div>
+
+
+</body>
+</html>

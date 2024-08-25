@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>A Web Page</title>
+	<link rel="stylesheet" href="../../css/layout.css" />
+	<link rel="stylesheet" href="../../css/book-bycategory.css" />
+</head>
+<body>
+<header>
+
+</header>
+<main>
+	<a class="back-button" th:href="@{/book/index}">Back to Category</a>
+	<div class="search-box">
+		<h2>Search by</h2>
+		<form>
+			<label for="title">Title</label>
+			<input type="text" id="title" name="title" th:attr="value=${title}">
+			<label for="author">Author</label>
+			<input type="text" id="author" name="authorName" th:attr="value=${authorName}">
+			<div class="checkbox-container">
+				<input type="checkbox" id="isAvailable" name="isAvailable">
+				<label for="isAvailable">Is Available</label>
+			</div>
+			<button type="submit">Search</button>
+		</form>
+	</div>
+	<h2>List of <span th:text="${categoryName}"></span></h2>
+	<a class="add-button" th:href="@{/book/form(categoryName=${categoryName},code=)}">Add New <span th:text="${categoryName}"></span></a>
+	<table>
+		<thead>
+		<tr>
+			<th>Summary</th>
+			<th>Edit</th>
+			<th>Delete</th>
+			<th>Book Title</th>
+			<th>Author</th>
+			<th>Is Borrowed</th>
+			<th>Release Date</th>
+			<th>Total Pages</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each=" book : ${books}">
+			<td><a th:if="${book.summary != null and !book.summary.isEmpty()}" th:text="'Summary'"></a></td>
+			<td><a th:href="@{/book/form(categoryName=${categoryName},code=${book.code})}">Edit</a></td>
+			<td><a th:href="@{/book/delete-book(code=${book.code})}">Delete</a></td>
+			<td th:text="${book.title}"></td>
+			<td th:text="${book.authorName}"></td>
+			<td th:text="${book.isBorrowed}"></td>
+			<td th:text="${book.releaseDate}"></td>
+			<td th:text="${book.totalPage}"></td>
+		</tr>
+
+		</tbody>
+	</table>
+</main>
+</body>
+</html>

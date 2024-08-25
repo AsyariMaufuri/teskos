@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>A Web Page</title>
+	<link rel="stylesheet" href="../../css/layout.css" />
+	<link rel="stylesheet" href="../../css/book-form.css" />
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container">
+	<form method="post" class="upsert-form" th:attr="action=@{/book/form}">
+		<div class="form-group">
+			<label for="code">Code *</label>
+			<input type="text" id="code" th:field="${bookByCode.code}">
+		</div>
+
+		<div class="form-group">
+			<label for="title">Title *</label>
+			<input type="text" id="title" th:field="${bookByCode.title}">
+		</div>
+
+		<div class="form-group">
+			<label for="category">Category</label>
+			<span id="category" name="categoryName" th:text="${categoryName}"></span>
+			<input type="hidden" name="categoryName" id="categoryName" th:value="${categoryName}">
+		</div>
+
+		<div class="form-group">
+			<label for="author">Author *</label>
+			<select id="author" name="authorId">
+				<option th:value=null>Select Author</option>
+				<option
+						th:each="author:${authorOptions}"
+						th:object="${author}"
+						th:name="authorId"
+						th:text="*{fullName}"
+						th:value="*{authorId}"
+						th:selected="${author.authorId} == ${bookByCode.authorId}"
+				>
+				</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="release-date">Release Date</label>
+			<input type="date" id="release-date" th:name="releaseDate" th:value="${bookByCode.releaseDate}" >
+		</div>
+
+		<div class="form-group">
+			<label for="total-page">Total Page</label>
+			<input type="number" id="total-page" th:field="${bookByCode.totalPage}">
+		</div>
+
+		<div class="form-group">
+			<label for="summary">Summary</label>
+			<textarea id="summary" th:field="${bookByCode.summary}"></textarea>
+		</div>
+
+		<div class="form-group buttons">
+			<button type="submit" class="submitButtonClass">Submit</button>
+			<button type="button" class="backToIndexClass" th:onclick="|location.href='@{/book/index}'|">Back to Index</button>
+		</div>
+	</form>
+</div>
+</body>
+</html>

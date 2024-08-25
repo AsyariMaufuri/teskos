@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/merchandise-index.css" />
+    <script src="../../js/merchandise.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <main>
+        <div class="merchandise">
+            <a th:href="@{/merchandise/form}">Add New Product</a>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Discontinue</th>
+                </tr>
+                <tr th:each=" product : ${products}">
+                    <td>
+                        <a th:href="@{/merchandise/form(productId=${product.productId})}">Edit</a>
+                        <a th:href="@{/merchandise/delete(productId=${product.productId})}">Delete</a>
+                        <a class="infoProduct" th:attr="product-id=${product.productId}">Info</a>
+                        <a th:if="${product.discontinue}" th:href="@{/merchandise/discontinue(productId=${product.productId})}">Discontinue</a>
+                    </td>
+                    <td th:text="${product.productName}">Laptop</td>
+                    <td th:text="${product.category}">Computer</td>
+                    <td th:text="${product.discontinue ? 'yes' : 'no'}">Yes</td>
+                </tr>
+            </table>
+            <div th:text="|page ${currentPage} of ${totalPages}|" class="totalPage"></div>
+            <div class="pageNow">
+                <a href="javascript:;" class="number"
+                   th:each="page : ${#numbers.sequence(1, totalPages)}"
+                   th:href="@{/merchandise/index(page=${page})}"
+                   th:text="${page}"></a>
+            </div>
+        </div>
+    </main>
+</div>
+<div class="popupProduct">
+    <table>
+        <tbody>
+        <tr>
+            <td>Name</td>
+            <td class="textName"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td class="textCategory"></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td class="textDescription"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td class="textPrice"></td>
+        </tr>
+        <tr>
+            <td>Discontinue</td>
+            <td class="textDiscontinue"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <button class="closeButton">Tutup</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+</body>
+</html>

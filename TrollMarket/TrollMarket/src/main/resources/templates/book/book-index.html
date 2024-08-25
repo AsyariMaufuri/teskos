@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>A Web Page</title>
+	<link rel="stylesheet" href="../../css/layout.css" />
+	<link rel="stylesheet" href="../../css/book-index.css" />
+	<script src="../../js/category.js" defer></script>
+
+</head>
+<body>
+<div class="container">
+	<header th:replace="~{layout/layout :: header}">
+
+	</header>
+	<main>
+		<form method="get" class="search-bar" th:attr="action=@{/book/index}">
+			<label for="search-name">search by</label>
+			<input type="text" id="search-name" name="categoryName" placeholder="Name" th:attr="value=${categoryName}">
+			<button type="submit">Search</button>
+		</form>
+		<a class="add-button" >Add New Category</a>
+		<table>
+			<thead>
+			<tr>
+				<th></th>
+				<th>Category</th>
+				<th>Floor</th>
+				<th>Isle</th>
+				<th>Bay</th>
+				<th>Total Books</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="category : ${categories}">
+				<td>
+					<a th:href="@{'/book/'+${category.categoryName}}">Books</a>
+					<a class="editCategory" th:attr="category-name=${category.categoryName}"  >Edit</a>
+					<a th:href="@{/book/delete-category(categoryName=${category.categoryName})}">Delete</a>
+				</td>
+				<td th:text="${category.categoryName}">Science Fiction</td>
+				<td th:text="${category.floor}">3</td>
+				<td th:text="${category.isle}">A</td>
+				<td th:text="${category.bay}">1</td>
+				<td th:text="${category.totalBook}">45</td>
+			</tr>
+			</tbody>
+		</table>
+		<div th:text="|page ${currentPage} of ${totalPages}|" class="totalPage"></div>
+		<div class="pageNow">
+			<a href="javascript:;" class="number"
+			   th:each="page : ${#numbers.sequence(1, totalPages)}"
+			   th:href="@{/book/index(page=${page},categoryName=${categoryName})}"
+			   th:text="${page}"></a>
+		</div>
+	</main>
+</div>
+<div class="popup-category">
+	<form  class="form-insert">
+		<table>
+			<tbody>
+			<tr>
+				<td>Category Name</td>
+				<td>
+					<input type="text" name="categoryName" class="inputCategoryName">
+					<div errors="categoryName"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>Floor</td>
+				<td>
+					<input type="text" name="floor" class="inputFloor">
+				</td>
+			</tr>
+			<tr>
+				<td>Isle</td>
+				<td>
+					<input type="text" name="isle" class="inputIsle">
+				</td>
+			</tr>
+			<tr>
+				<td>Bay</td>
+				<td>
+					<input type="text" name="bay" class="inputBay">
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<button type="submit" class="submitPopup">Submit</button>
+		<button type="button" class="closePopup">Close</button>
+	</form>
+</div>
+</body>
+</html>

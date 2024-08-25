@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/cart-index.css" />
+    <script src="../../js/cart.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <main>
+        <h2>My Cart</h2>
+        <button class="purchase-all">Purchase All</button>
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Shipment</th>
+                <th>Seller</th>
+                <th>Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="orderDetail : ${orderDetails}">
+                <td><a th:href="@{/cart/remove(invoice=${orderDetail.invoice},productId=${orderDetail.productId},username=${#authentication.getPrincipal().getUsername()})}">Remove</a></td>
+                <td th:text="${orderDetail.productName}"></td>
+                <td th:text="${orderDetail.quantity}"></td>
+                <td th:text="${orderDetail.shipperName}"></td>
+                <td th:text="${orderDetail.sellerName}"></td>
+                <td th:text="${orderDetail.totalPrice}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:text="|page ${currentPage} of ${totalPages}|" class="totalPage"></div>
+        <div class="pageNow">
+            <a href="javascript:;" class="number"
+               th:each="page : ${#numbers.sequence(1, totalPages)}"
+               th:href="@{/cart/index(page=${page})}"
+               th:text="${page}"></a>
+        </div>
+    </main>
+</div>
+</body>
+</html>

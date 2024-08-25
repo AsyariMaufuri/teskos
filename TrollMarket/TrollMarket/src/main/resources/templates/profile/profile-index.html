@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/profile-index.css" />
+    <script src="../../js/profile.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <main>
+        <div class="profile">
+            <p><strong>Name:</strong> <span th:text="${account.name}"></span></p>
+            <p><strong>Role:</strong> <span th:text="${account.role}"></span></p>
+            <p><strong>Address:</strong> <span th:text="${account.address}"></span></p>
+            <p><strong>Balance:</strong> <span th:text="${account.balance}"></span> <button th:attr="username=${account.username}" th:if="${account.role == 'buyer'}" class="add-balance">Tambah dana</button></p>
+        </div>
+        <div class="transaction-history">
+            <h3>My Transaction History</h3>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Shipment</th>
+                    <th>Total Price</th>
+                </tr>
+                <tr th:each="orderDetail : ${orderDetails}">
+                    <td th:text="${orderDetail.date}">27/09/2018</td>
+                    <td th:text="${orderDetail.productName}"></td>
+                    <td th:text="${orderDetail.quantity}">2</td>
+                    <td th:text="${orderDetail.shipperName}">JNE</td>
+                    <td th:text="${orderDetail.totalPriceIDR}">Rp 309.000</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+<div class="popupTopUp">
+    <form>
+        <label for="banyaknya">Tambah Dana Sebesar</label>
+        <input type="text" id="banyaknya" class="nominal">
+
+        <button type="submit">Submit</button>
+        <button type="button" class="closeButton">Close</button>
+    </form>
+    <button type="submit" value="20000" class="topupButton">20000</button>
+    <button type="submit" value="50000" class="topupButton">50000</button>
+</div>
+</body>
+</html>

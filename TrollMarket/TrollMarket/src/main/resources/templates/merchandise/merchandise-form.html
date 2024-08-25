@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/merchandise-form.css" />
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}">
+
+</header>
+<main>
+    <form method="post" class="upsert-form" th:action="@{/merchandise/form}">
+        <input type="hidden" th:field="${productById.productId}"/>
+        <input type="hidden" name="username" th:value="${#authentication.getPrincipal().getUsername()}"/>
+
+
+
+        <div>
+            <label for="name">Name *</label>
+            <input type="text" id="name" th:field="${productById.productName}">
+            <div th:errors = "${productById.productName}"></div>
+        </div>
+
+        <div>
+            <label for="cat">Category *</label>
+            <select id="cat" th:field="${productById.category}">
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="beauty">Beauty</option>
+                <option value="health">Health</option>
+                <option value="home">Home</option>
+                <option value="food">Food</option>
+                <option value="sports">Sports</option>
+                <option value="baby">Baby</option>
+                <option value="automotive">Automotive</option>
+                <option value="books">Books</option>
+                <option value="gaming">Gaming</option>
+                <option value="pets">Pets</option>
+            </select>
+            <div th:errors="${productById.category}"></div>
+        </div>
+
+
+        <div>
+            <label for="description">Description</label>
+            <input type="text" id="description" th:field="${productById.description}">
+        </div>
+
+        <div>
+            <label for="Price">Price *</label>
+            <input type="number" id="Price"  th:field="${productById.price}"  >
+        </div>
+
+        <div>
+            <label for="dis">Discontinue</label>
+            <input type="checkbox" id="dis" th:field="${productById.discontinue}" >
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Save</button>
+            <a th:href="@{/merchandise/index}" type="button">Cancel</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="../../js/account.js" defer></script>
+    <link rel="stylesheet" href="../../css/login-index.css" />
+</head>
+<body>
+<div class="container">
+    <div class="login-form">
+        <h1>Sign In</h1>
+        <form method="post" th:action="@{/authenticating}" class="formLogin">
+            <p th:if="${error}">Wrong username or password</p>
+            <input type="hidden" th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}"/>
+            <input class="username" type="text" name="username" placeholder="username" autocomplete="off"/>
+            <input class="password" type="password" name="password" placeholder="password"/>
+            <div class="cssOption">
+                <label for="role">Role</label>
+                <select id="role" name="role" class="role">
+                    <option value="admin">Admin</option>
+                    <option value="seller">Seller</option>
+                    <option value="buyer">Buyer</option>
+                </select>
+            </div>
+            <button type="submit" class="token">Sign In</button>
+        </form>
+        <div class="register-links">
+            <div>
+                <a th:href="@{/account/register(role = 'buyer')}">register as buyer</a>
+            </div>
+            <div>
+                <a th:href="@{/account/register(role = 'seller')}">register as seller</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

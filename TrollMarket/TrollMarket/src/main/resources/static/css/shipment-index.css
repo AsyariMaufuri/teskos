@@ -1,0 +1,169 @@
+/* layout.css */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+/* author-index.css */
+.shipment {
+    margin-bottom: 20px;
+}
+
+.add-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #5a5a5a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-button:hover {
+    background-color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: normal;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td a {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #5a5a5a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+table td a:hover {
+    background-color: #333;
+}
+
+.totalPage {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.pageNow {
+    text-align: right;
+}
+
+.pageNow .number {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #eee;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pageNow .number:hover {
+    background-color: #ddd;
+}
+
+.pageNow .number[th:text="${page}"] {
+    font-weight: bold;
+    background-color: #ccc;
+}
+
+.popup-shipper {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.popup-shipper .form-insert {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.popup-shipper table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.popup-shipper td {
+    padding: 10px;
+}
+
+.popup-shipper input[type="text"],
+.popup-shipper input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.popup-shipper .submitPopup,
+.popup-shipper .closePopup {
+    padding: 10px 20px;
+    background-color: #5a5a5a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+}
+
+.popup-shipper .submitPopup:hover,
+.popup-shipper .closePopup:hover {
+    background-color: #333;
+}
+
+element.style {
+    display: flex;
+    flex-direction: column;
+}

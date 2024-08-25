@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/home.css" />
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <main>
+        <div class="content">
+            <p>Selamat data di Troll Market.</p>
+            <p>Ini adalah market place yang tidak pernah ada promosi dan diskon.</p>
+            <p>Karena ini hanya assignment buat kalian, jadi buat apa ada diskon.</p>
+        </div>
+    </main>
+</div>
+</body>
+</html>

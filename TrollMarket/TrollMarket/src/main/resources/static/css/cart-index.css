@@ -1,0 +1,108 @@
+/* layout.css */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+/* merchandise-index.css */
+main h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.purchase-all {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #5a5a5a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.purchase-all:hover {
+    background-color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: normal;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td a {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #5a5a5a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+table td a:hover {
+    background-color: #333;
+}
+
+.totalPage {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.pageNow {
+    text-align: right;
+}
+
+.pageNow .number {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #eee;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pageNow .number:hover {
+    background-color: #ddd;
+}
+
+.pageNow .number[th:text="${page}"] {
+    font-weight: bold;
+    background-color: #ccc;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/shop-index.css" />
+    <link rel="stylesheet" href="../../css/popupShop.css" />
+    <script src="../../js/merchandise.js" defer></script>
+    <script src="../../js/shopCart.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <form method="get" class="search-bar" th:attr="action=@{/shop/index}">
+        <div>
+            <p><strong>Name</strong></p>
+            <input type="text" name="productName" placeholder="Product Name..." th:attr="value=${productName}">
+        </div>
+        <div>
+            <p><strong>Category</strong></p>
+            <input type="text" name="category" placeholder="Category..." th:attr="value=${category}">
+        </div>
+        <div>
+            <p><strong>Description</strong></p>
+            <input type="text" name="description" placeholder="Description.." th:attr="value=${description}">
+        </div>
+        <button>Search</button>
+    </form>
+    <main>
+        <div class="product-list">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td><a class="addToCard" th:attr="product-idd=${product.productId}" th:id="${#authentication.getPrincipal().getUsername()}">Add to Cart</a>
+                        <a class="infoProduct" th:attr="product-id=${product.productId}">Detail Info</a></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.priceIDR}"></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+
+<div class="popupProduct">
+    <table>
+        <tbody>
+        <tr>
+            <td>Name</td>
+            <td class="textName"></td>
+        </tr>
+        <tr>
+            <td>Category</td>
+            <td class="textCategory"></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td class="textDescription"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td class="textPrice"></td>
+        </tr>
+        <tr>
+            <td>Discontinue</td>
+            <td class="textDiscontinue"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <button class="closeButton">Tutup</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="popUpAddCart">
+    <form action="">
+        <input type="hidden" class="product-id">
+        <input type="hidden" class="id">
+        <div>
+            <label for="qty">Quantity</label>
+            <input id="qty" type="number" name="quantity" class="quantityInput">
+            <div th:errors="${account}"></div>
+        </div>
+        <div>
+            <label for="ship">Shipper - Price</label>
+            <select id="ship" type="text" name="shipperName" class="shipperInput">
+                <option class="optionShipper"></option>
+            </select>
+        </div>
+        <div>
+            <label for="note">Note</label>
+            <input id="note" type="text" name="note" class="noteInput">
+        </div>
+        <div>
+            <p>Balance anda sebanyak <span class="infoBalance" th:text="${account.balance}"></span></p>
+
+        </div>
+        <button type="submit">Submit</button>
+        <button type="button">Close</button>
+    </form>
+    
+</div>
+</body>
+</html>

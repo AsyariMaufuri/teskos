@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.browser-bar {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background: #e0e0e0;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    margin-right: 5px;
+}
+
+.url-bar {
+    flex: 1;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.search-section {
+    margin-top: 20px;
+}
+
+.search-section h2 {
+    margin-bottom: 10px;
+}
+
+.search-section form {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+}
+
+.search-section label {
+    align-self: center;
+}
+
+.search-section input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.checkbox {
+    grid-column: span 2;
+}
+
+.search-section button {
+    grid-column: span 2;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.customer-section {
+    margin-top: 20px;
+}
+
+.add-new-customer {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+td button {
+    margin-right: 5px;
+}
+
+td a {
+    color: black;
+    text-decoration: none;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: #f0f0f0;
+}

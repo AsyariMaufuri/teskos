@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/history-index.css" />
+    <script src="../../js/merchandise.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <header th:replace="~{layout/layout :: header}">
+
+    </header>
+    <main>
+        <form method="get" class="filter" th:action="@{/history/index}">
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <label for="sellerUsername">Seller</label>
+                    </td>
+                    <td>
+                        <select name="sellerUsername" id="sellerUsername">
+                            <option th:value=null>Select Seller...</option>
+                            <option
+                                    th:each="seller:${optionAccountSeller}"
+                                    th:text="${seller.name}"
+                                    th:value="${seller.username}"
+                                    th:selected="${sellerName} == ${seller.username}"
+                            ></option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="buyerUsername">Buyer</label>
+                    </td>
+                    <td>
+                        <select name="buyerUsername" id="buyerUsername">
+                            <option th:value=null>Select Buyer...</option>
+                            <option
+                                    th:each="buyer:${optionAccountBuyer}"
+                                    th:text="${buyer.name}"
+                                    th:value="${buyer.username}"
+                                    th:selected="${buyerName} == ${buyer.username}"
+                            ></option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="-button" type="submit">Search</button>
+        </form>
+        <div class="grid-container shop-index">
+            <table>
+                <thead>
+                <th>Date</th>
+                <th>Seller</th>
+                <th>Buyer</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Shipment</th>
+                <th>TotalPrice</th>
+                </thead>
+                <tbody>
+                <tr th:each="orderDetail:${orderDetails}" >
+                    <td th:text="${orderDetail.date}"></td>
+                    <td th:text="${orderDetail.sellerName}"></td>
+                    <td th:text="${orderDetail.buyerName}"></td>
+                    <td th:text="${orderDetail.productName}"></td>
+                    <td th:text="${orderDetail.quantity}"></td>
+                    <td th:text="${orderDetail.shipperName}"></td>
+                    <td th:text="${orderDetail.totalPriceIDR}"></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <div class="pagination">
+                            <div th:text="|page ${currentPage} of ${totalPages}|"></div>
+                            <div>
+                                <a th:each="page : ${#numbers.sequence(1, totalPages)}"
+                                   th:href="@{/history/index(page=${page},buyerUsername=${buyerUsername},sellerUsername=${sellerUsername})}"
+                                   th:text="${page}" class="number"></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>
